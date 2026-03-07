@@ -1,0 +1,16 @@
+<div>
+  <button (click)="refresh()">Refresh</button>
+  @if (isLoading) {
+    <p>Laden...</p>
+  }
+  @if (keys$ | async; as keys) {
+    @for (key of keys; track key.id) {
+      <div>
+        <a [routerLink]="['/dashboard/keys', key.id]">
+          <p>ID: {{ key.id }}</p>
+          <p>Name: {{ key.name }}</p>
+        </a>
+      </div>
+    }
+  }
+</div>

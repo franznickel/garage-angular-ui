@@ -1,0 +1,18 @@
+<div>
+  <button (click)="refresh()">Refresh</button>
+  @if (isLoading) {
+    <p>Laden...</p>
+  }
+  @if (status$ | async; as status) {
+    <p>Node ID: {{ status.nodes }}</p>
+  }
+  @if (health$ | async; as health) {
+    <p>Status: {{ health.status }}</p>
+    <p>Nodes verbunden: {{ health.connectedNodes }} / {{ health.knownNodes }}</p>
+    <p>Storage Nodes gesund: {{ health.storageNodes }} / {{ health.storageNodes }}</p>
+    <p>Partitionen gesund: {{ health.partitionsAllOk }} / {{ health.partitions }}</p>
+  }
+  @if (statistics$ | async; as stats) {
+    <p>Statistiken: {{ stats.freeform }}</p>
+  }
+</div>

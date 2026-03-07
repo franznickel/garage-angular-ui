@@ -1,0 +1,15 @@
+<div>
+  <button (click)="refresh()">Refresh</button>
+  @if (isLoading) {
+    <p>Laden...</p>
+  }
+  @if (nodeInfo) {
+    @for (entry of nodeInfo.success | keyvalue; track entry.key) {
+      <div>
+        <p>Node: {{ entry.key }}</p>
+        <p>Version: {{ entry.value.garageVersion }}</p>
+        <p>Features: {{ entry.value.garageFeatures?.join(', ') }}</p>
+      </div>
+    }
+  }
+</div>

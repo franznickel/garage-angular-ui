@@ -1,0 +1,76 @@
+<div class="flex flex-col flex-1 h-screen overflow-hidden bg-sand-100">
+    <header class="top-nav flex items-center justify-between px-6 py-3 shrink-0">
+      <div>
+        <app-logo-component class="flex items-center gap-2.5 px-2"></app-logo-component>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-sm">
+          <button (click)="logout()">Logout</button>
+        </div>
+        <button class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-sm text-gray-700 hover:bg-gray-50 transition">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+          Help
+        </button>
+      </div>
+    </header>
+
+    <div class="flex flex-1 overflow-hidden">
+      <aside class="sidebar w-56 shrink-0 flex flex-col py-5 px-3 overflow-y-auto">
+        <nav class="flex flex-col gap-0.5">
+          <a routerLink="/dashboard/overview"
+             routerLinkActive="nav-active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-900 rounded-lg hover:bg-white transition"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+            Overview
+          </a>
+        </nav>
+        <div class="mt-6 px-2 mb-1 text-[10.5px] font-semibold tracking-widest text-gray-400">STORAGE</div>
+        <nav class="flex flex-col gap-0.5">
+          <a routerLink="/dashboard/buckets"
+             routerLinkActive="nav-active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-900 rounded-lg hover:bg-white transition"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
+            Buckets
+          </a>
+        </nav>
+        <div class="mt-6 px-2 mb-1 text-[10.5px] font-semibold tracking-widest text-gray-400">ACCESS</div>
+        <nav class="flex flex-col gap-0.5">
+          <a routerLink="/dashboard/keys"
+             routerLinkActive="nav-active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-900 rounded-lg hover:bg-white transition"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 2l-2 2m-7.61 7.61a5.5 5.5 0 1 1-7.778 7.778 5.5 5.5 0 0 1 7.777-7.777zm0 0L15.5 7.5m0 0l3 3L22 7l-3-3m-3.5 3.5L19 4"/></svg>
+            Access Keys
+          </a>
+          <a routerLink="/dashboard/token"
+             routerLinkActive="nav-active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-900 rounded-lg hover:bg-white transition"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="9" y1="7" x2="15" y2="7"/><line x1="9" y1="11" x2="15" y2="11"/><line x1="9" y1="15" x2="13" y2="15"/></svg>
+            Admin Tokens
+          </a>
+        </nav>
+        <div class="mt-6 px-2 mb-1 text-[10.5px] font-semibold tracking-widest text-gray-400">CLUSTER</div>
+        <nav class="flex flex-col gap-0.5">
+          <a routerLink="/dashboard/nodes"
+             routerLinkActive="nav-active"
+             [routerLinkActiveOptions]="{ exact: true }"
+             class="flex items-center gap-2.5 px-3 py-2 text-sm text-gray-900 rounded-lg hover:bg-white transition"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="5" r="3"/><circle cx="5" cy="19" r="3"/><circle cx="19" cy="19" r="3"/><path d="M12 8v3m0 0l-5 5m5-5l5 5"/></svg>
+            Nodes
+          </a>
+        </nav>
+      </aside>
+
+      <main class="flex-1 overflow-y-auto px-8 py-7">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+</div>

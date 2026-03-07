@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/ng-openapi-gen/ng-openapi-gen-schema.json",
+  "input": "garage-openapi.yml",
+  "output": "src/app/generated",
+  "ignoreUnusedModels": false,
+  "removeStaleFiles": true,
+  "modelIndex": true,
+  "services": true,
+  "serviceIndex": true,
+  "apiModule": true,
+  "promises": false,
+  "enumStyle": "alias",
+  "serviceSuffix": "ApiService",
+  "modelSuffix": "",
+  "module": "ApiModule",
+  "modelPrefix": "",
+  "skipJsonSuffix": false,
+  "indexFile": true
+}

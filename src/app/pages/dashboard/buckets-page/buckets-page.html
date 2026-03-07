@@ -1,0 +1,16 @@
+<div>
+  <button (click)="refresh()">Refresh</button>
+  @if (isLoading) {
+    <p>Laden...</p>
+  }
+  @if (buckets$ | async; as buckets) {
+    @for (bucket of buckets; track bucket.id) {
+      <div>
+        <a [routerLink]="['/dashboard/buckets', bucket.id]">
+          <p>ID: {{ bucket.id }}</p>
+          <p>Aliases: {{ bucket.globalAliases.join(', ') }}</p>
+        </a>
+      </div>
+    }
+  }
+</div>

@@ -1,0 +1,13 @@
+<div>
+  <button (click)="refresh()">Refresh</button>
+  @if (isLoading) {
+    <p>Laden...</p>
+  }
+  @if (bucket$ | async; as bucket) {
+    <p>ID: {{ bucket.id }}</p>
+    <p>Globale Aliases: {{ bucket.globalAliases.join(', ') }}</p>
+    <p>Objekte: {{ bucket.objects }}</p>
+    <p>Größe: {{ bucket.bytes }} Bytes</p>
+    <p>Unfertige Uploads: {{ bucket.unfinishedUploads }}</p>
+  }
+</div>

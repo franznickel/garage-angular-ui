@@ -1,0 +1,19 @@
+<div>
+  <button (click)="refresh()">Refresh</button>
+  @if (isLoading) {
+    <p>Laden...</p>
+  }
+  @if (key$ | async; as key) {
+    <p>ID: {{ key.accessKeyId }}</p>
+    <p>Name: {{ key.name }}</p>
+    <p>Berechtigungen: Buckets erstellen: {{ key.permissions.createBucket }}</p>
+    @for (bucket of key.buckets; track bucket.id) {
+      <div>
+        <p>Bucket: {{ bucket.id }}</p>
+        <p>Lesen: {{ bucket.permissions.read }}</p>
+        <p>Schreiben: {{ bucket.permissions.write }}</p>
+        <p>Owner: {{ bucket.permissions.owner }}</p>
+      </div>
+    }
+  }
+</div>

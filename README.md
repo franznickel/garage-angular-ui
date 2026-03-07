@@ -9,3 +9,15 @@ The goal is to provide a clean and simple interface for interacting with Garage 
 The project is inspired by two existing projects that provide similar functionality, but this implementation uses a different technology stack:
 - https://github.com/khairul169/garage-webui
 - https://git.deuxfleurs.fr/Deuxfleurs/garage-webadmin/
+
+
+## Testing the Application Locally
+
+1. Install dependencies:
+   `npm install`
+2. Generate API client classes:
+   `npm run generate-api`
+3. Run the application in dev mode:
+   `ng serve`
+4. Open your browser and navigate to `http://localhost:4200` to access the application.
+

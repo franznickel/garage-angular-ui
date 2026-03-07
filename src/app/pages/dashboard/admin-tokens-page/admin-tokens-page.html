@@ -1,0 +1,15 @@
+<div>
+  <button (click)="refresh()">Refresh</button>
+  @if (isLoading) {
+    <p>Laden...</p>
+  }
+  @if (adminTokens$ | async; as tokens) {
+    @for (token of tokens; track token.id) {
+      <div>
+        <p>ID: {{ token.id }}</p>
+        <p>Name: {{ token.name }}</p>
+        <p>Läuft ab: {{ token.expiration ?? 'Nie' }}</p>
+      </div>
+    }
+  }
+</div>
