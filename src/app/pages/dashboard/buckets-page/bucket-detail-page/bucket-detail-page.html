@@ -1,13 +1,32 @@
 <div>
-  <button (click)="refresh()">Refresh</button>
-  @if (isLoading) {
-    <p>Laden...</p>
-  }
+  <div class="flex justify-between items-center mb-8">
+    @if (bucket$ | async; as bucket) {
+      <h1 class="text-2xl font-bold">{{ bucket.globalAliases }}</h1>
+    } @else {
+      <h1 class="text-2xl font-bold">...</h1>
+    }
+    <app-refresh-button-component (buttonClicked)="refresh()" [isLoading]="isLoading"></app-refresh-button-component>
+  </div>
   @if (bucket$ | async; as bucket) {
-    <p>ID: {{ bucket.id }}</p>
-    <p>Globale Aliases: {{ bucket.globalAliases.join(', ') }}</p>
-    <p>Objekte: {{ bucket.objects }}</p>
-    <p>Größe: {{ bucket.bytes }} Bytes</p>
-    <p>Unfertige Uploads: {{ bucket.unfinishedUploads }}</p>
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm text-gray-500">Bucket ID: {{ bucket.id }}</h2>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <app-info-card-component [key]="'Created'" [value]="bucket.created | date:'medium'"></app-info-card-component>
+        <app-info-card-component [key]="'Website Access'" [value]="bucket.websiteAccess ? 'Enabled' : 'Disabled'"></app-info-card-component>
+        <app-info-card-component [key]="'Objects'" [value]="bucket.objects"></app-info-card-component>
+        <app-info-card-component [key]="'Storage Used'" [value]="formatBytes(bucket.bytes)"></app-info-card-component>
+        <app-info-card-component [key]="'Unfinished Uploads'" [value]="bucket.unfinishedUploads"></app-info-card-component>
+      </div>
+      <div class="shadow-sm rounded-lg p-4 bg-gray-100">
+        <div class="text-sm text-gray-500">Access Keys</div>
+        <div class="p-4 flex items-center justify-between">
+          @for (key of bucket.keys; track key.accessKeyId) {
+            <app-key-card-component [key]="key" class="w-full"></app-key-card-component>
+          }
+        </div>
+      </div>
+    </div>
   }
 </div>

@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { BucketService } from '../../../services/bucket.service';
+import { RefreshButtonComponent } from '../../../components/refresh-button-component/refresh-button-component';
+import { BucketCardComponent } from '../../../components/bucket-card-component/bucket-card-component';
 
 @Component({
   selector: 'app-buckets-page',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, RefreshButtonComponent, BucketCardComponent],
   templateUrl: './buckets-page.html',
   styleUrl: './buckets-page.css',
 })
