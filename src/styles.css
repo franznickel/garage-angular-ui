@@ -1,17 +1,74 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import 'tailwindcss';
+@import "tailwindcss";
+@import "phosphor-icons/src/css/icons.css";
 
 @theme {
-  --font-sans: 'DM Sans', sans-serif;
-  --font-mono: 'DM Mono', monospace;
 
-  --color-sand-50: #f7f4ef;
-  --color-sand-100: #f0ede8;
-  --color-sand-200: #e5e0d8;
+  /* Fonts */
+  --font-sans: "Fira Sans", system-ui, sans-serif;
+  --font-mono: ui-monospace, monospace;
+
+  /* Gray */
+  --color-gray-50: #FDFCFA;
+  --color-gray-100: #FAF8F6;
+  --color-gray-150: #F5F2F0;
+  --color-gray-200: #EFEBE8;
+  --color-gray-250: #E8E3DF;
+  --color-gray-300: #DFD9D5;
+  --color-gray-350: #D4CEC9;
+  --color-gray-400: #C8C1BC;
+  --color-gray-450: #BBB4AE;
+  --color-gray-500: #ADA59E;
+  --color-gray-550: #9D958D;
+  --color-gray-600: #8C837C;
+  --color-gray-650: #7B7169;
+  --color-gray-700: #685E56;
+  --color-gray-750: #554B42;
+  --color-gray-800: #41372E;
+  --color-gray-850: #2D231B;
+  --color-gray-900: #191007;
+  --color-gray-950: #060200;
+
+  /* Accent */
+  --color-accent-red: #E12B2B;
+  --color-accent-orange: #FA9248;
+  --color-accent-yellow: #FFDE75;
+  --color-accent-green: #4DA764;
+  --color-accent-blue: #2B71DB;
+
+  --color-accent-red-light: #FFF0F0;
+  --color-accent-orange-light: #FFEADB;
+  --color-accent-yellow-light: #FFF5D3;
+  --color-accent-green-light: #E1FBE7;
+  --color-accent-blue-light: #EDF4FF;
+
+  /* Brand */
+  --color-brand-1: #FFEEDD;
+  --color-brand-2: #FFD9B3;
+  --color-brand-3: #FFB366;
+  --color-brand-4: #FF9124;
+  --color-brand-5: #E57300;
+  --color-brand-6: #8A4500;
+  --color-brand-7: #572B00;
 }
 
-/* Animations */
+@font-face {
+  font-family: "Fira Sans";
+  src:
+    local("Fira Sans SemiBold"),
+    local("FiraSans-SemiBold"),
+    url("/fonts/FiraSans-SemiBold.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+body {
+  font-family: "Fira Sans", sans-serif;
+  font-weight: 600;
+}
+
 @keyframes fadeUp {
   from { opacity: 0; transform: translateY(10px); }
   to   { opacity: 1; transform: translateY(0); }
