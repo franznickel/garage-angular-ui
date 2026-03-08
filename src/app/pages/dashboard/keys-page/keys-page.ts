@@ -1,11 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { KeyService } from '../../../services/key.service';
+import {KeyCardComponent} from '../../../components/key-card-component/key-card-component';
+import {RefreshButtonComponent} from '../../../components/refresh-button-component/refresh-button-component';
 
 @Component({
   selector: 'app-keys-page',
-  imports: [CommonModule, RouterLink],
+  imports: [CommonModule, KeyCardComponent, RefreshButtonComponent],
   templateUrl: './keys-page.html',
   styleUrl: './keys-page.css',
 })

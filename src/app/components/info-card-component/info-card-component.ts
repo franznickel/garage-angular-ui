@@ -1,11 +1,8 @@
 import {Component, Input} from '@angular/core';
-import {DatePipe} from '@angular/common';
 
 @Component({
   selector: 'app-info-card-component',
-  imports: [
-    DatePipe
-  ],
+  imports: [],
   templateUrl: './info-card-component.html',
   styleUrl: './info-card-component.css',
 })

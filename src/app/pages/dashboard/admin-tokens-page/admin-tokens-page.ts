@@ -1,10 +1,12 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AdminTokenService } from '../../../services/admin-token.service';
+import {TokenCardComponent} from '../../../components/token-card-component/token-card-component';
+import {RefreshButtonComponent} from '../../../components/refresh-button-component/refresh-button-component';
 
 @Component({
   selector: 'app-admin-tokens-page',
-  imports: [CommonModule],
+  imports: [CommonModule, TokenCardComponent, RefreshButtonComponent],
   templateUrl: './admin-tokens-page.html',
   styleUrl: './admin-tokens-page.css',
 })

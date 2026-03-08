@@ -1,14 +1,27 @@
 # Garage AngularUI
 
-This project is a simple web UI for managing a Garage S3 cluster.
+A lightweight web UI for managing a Garage S3 cluster.\
+This project aims to provide a simple and clean administration interface for Garage while staying easy to run and easy to understand.\
+The application is written in Angular and intentionally designed as a frontend-only application.
 
-The project is still in a very early stage and mainly exists as an experiment. It is written in Angular, since that is part of my personal tech stack.
 
-The goal is to provide a clean and simple interface for interacting with Garage S3 resources.
+> ⚠️ This project is in a very early stage and should currently be considered experimental.
 
-The project is inspired by two existing projects that provide similar functionality, but this implementation uses a different technology stack:
+## Motivation
+
+There are already existing projects that provide a web interface for Garage:
 - https://github.com/khairul169/garage-webui
+- https://github.com/Noooste/garage-ui
 - https://git.deuxfleurs.fr/Deuxfleurs/garage-webadmin/
+
+All these projects are great and definitely worth checking out.\
+However, this project was created with a slightly different goal.
+At the time this project was started:
+- the projects used a different technology stack
+- two projects used a separate backend and frontend architecture
+
+This project explores a simpler approach:\
+A single frontend application that talks directly to the Garage Admin API.\
 
 
 ## Testing the Application Locally
@@ -21,3 +34,7 @@ The project is inspired by two existing projects that provide similar functional
    `ng serve`
 4. Open your browser and navigate to `http://localhost:4200` to access the application.
 
+
+## Screenshots
+
+A example how the UI looks right now comming soon

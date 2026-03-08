@@ -4,10 +4,10 @@
     <app-refresh-button-component (buttonClicked)="refresh()" [isLoading]="isLoading"></app-refresh-button-component>
   </div>
   @if (buckets$ | async; as buckets) {
-    @for (bucket of buckets; track bucket.id) {
-      <div>
+    <div class="flex flex-col gap-3">
+      @for (bucket of buckets; track bucket.id) {
         <app-bucket-card-component [bucket]="bucket"></app-bucket-card-component>
-      </div>
-    }
+      }
+    </div>
   }
 </div>

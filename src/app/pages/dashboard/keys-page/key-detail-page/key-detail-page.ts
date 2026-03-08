@@ -2,10 +2,13 @@ import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
 import { KeyService } from '../../../../services/key.service';
+import {InfoCardComponent} from '../../../../components/info-card-component/info-card-component';
+import {RefreshButtonComponent} from '../../../../components/refresh-button-component/refresh-button-component';
+import {BucketCardComponent} from '../../../../components/bucket-card-component/bucket-card-component';
 
 @Component({
   selector: 'app-key-detail-page',
-  imports: [CommonModule],
+  imports: [CommonModule, InfoCardComponent, RefreshButtonComponent, BucketCardComponent],
   templateUrl: './key-detail-page.html',
   styleUrl: './key-detail-page.css',
 })

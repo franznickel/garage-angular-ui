@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { ListBucketsResponseItem } from '../../generated/';
 import { RouterLink } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
@@ -13,6 +12,5 @@ import { DatePipe } from '@angular/common';
   styleUrl: './bucket-card-component.css',
 })
 export class BucketCardComponent {
-  @Input()
-  bucket!: ListBucketsResponseItem;
+  @Input() bucket!: any;
 }

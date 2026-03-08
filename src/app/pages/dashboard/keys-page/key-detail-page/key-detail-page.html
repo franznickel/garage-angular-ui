@@ -1,19 +1,31 @@
 <div>
-  <button (click)="refresh()">Refresh</button>
-  @if (isLoading) {
-    <p>Laden...</p>
-  }
-  @if (key$ | async; as key) {
-    <p>ID: {{ key.accessKeyId }}</p>
-    <p>Name: {{ key.name }}</p>
-    <p>Berechtigungen: Buckets erstellen: {{ key.permissions.createBucket }}</p>
-    @for (bucket of key.buckets; track bucket.id) {
-      <div>
-        <p>Bucket: {{ bucket.id }}</p>
-        <p>Lesen: {{ bucket.permissions.read }}</p>
-        <p>Schreiben: {{ bucket.permissions.write }}</p>
-        <p>Owner: {{ bucket.permissions.owner }}</p>
-      </div>
+  <div class="flex justify-between items-center mb-8">
+    @if (key$ | async; as key) {
+      <h1 class="text-2xl font-bold">{{ key.name }}</h1>
+    } @else {
+      <h1 class="text-2xl font-bold">...</h1>
     }
+    <app-refresh-button-component (buttonClicked)="refresh()" [isLoading]="isLoading"></app-refresh-button-component>
+  </div>
+  @if (key$ | async; as key) {
+    <div class="flex flex-col gap-6">
+      <div class="flex items-center justify-between">
+        <h2 class="text-sm text-gray-500">Key ID: {{ key.accessKeyId }}</h2>
+      </div>
+      <div class="grid grid-cols-3 gap-4">
+        <app-info-card-component [key]="'Created'" [value]="key.created | date:'medium'"></app-info-card-component>
+        <app-info-card-component [key]="'Expiration'" [value]="key.expiration == null ? 'never' : key.expiration | date:'medium'"></app-info-card-component>
+        <app-info-card-component [key]="'Expired'" [value]="key.expired ? 'Yes' : 'No'"></app-info-card-component>
+        <app-info-card-component [key]="'can create Bucket'" [value]="key.permissions.createBucket ? 'Yes' : 'No'"></app-info-card-component>
+      </div>
+      <div class="shadow-sm rounded-lg p-4 bg-gray-100">
+        <div class="text-sm text-gray-500">Buckets</div>
+        <div class="p-4 flex items-center justify-between">
+          @for (bucket of key.buckets; track bucket.id) {
+            <app-bucket-card-component [bucket]="bucket" class="w-full"></app-bucket-card-component>
+          }
+        </div>
+      </div>
+    </div>
   }
 </div>
