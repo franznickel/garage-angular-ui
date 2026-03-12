@@ -40,7 +40,6 @@ export class GarageDataService {
 
   readonly clusterStatus$ = this._clusterStatus.asObservable();
   readonly clusterHealth$ = this._clusterHealth.asObservable();
-  readonly clusterStatistics$ = this._clusterStatistics.asObservable();
   readonly clusterLayout$ = this._clusterLayout.asObservable();
   readonly buckets$ = this._buckets.asObservable();
   readonly keys$ = this._keys.asObservable();
@@ -51,7 +50,7 @@ export class GarageDataService {
   loadDashboard(): Observable<{
     status: GetClusterStatusResponse;
     health: GetClusterHealthResponse;
-    statistics: GetClusterStatisticsResponse;
+    layout: GetClusterLayoutResponse;
     buckets: ListBucketsResponse;
     keys: ListKeysResponse;
   }> {
@@ -62,8 +61,8 @@ export class GarageDataService {
       health: this.clusterApi.getClusterHealth().pipe(
         tap(data => this._clusterHealth.next(data))
       ),
-      statistics: this.clusterApi.getClusterStatistics().pipe(
-        tap(data => this._clusterStatistics.next(data))
+      layout: this.clusterLayoutApi.getClusterLayout().pipe(
+        tap(data => this._clusterLayout.next(data))
       ),
       buckets: this.bucketApi.listBuckets().pipe(
         tap(data => this._buckets.next(data))
@@ -81,7 +80,7 @@ export class GarageDataService {
   refreshCluster(): Observable<{
     status: GetClusterStatusResponse;
     health: GetClusterHealthResponse;
-    statistics: GetClusterStatisticsResponse;
+    layout: GetClusterLayoutResponse;
   }> {
     return forkJoin({
       status: this.clusterApi.getClusterStatus().pipe(
@@ -90,8 +89,8 @@ export class GarageDataService {
       health: this.clusterApi.getClusterHealth().pipe(
         tap(data => this._clusterHealth.next(data))
       ),
-      statistics: this.clusterApi.getClusterStatistics().pipe(
-        tap(data => this._clusterStatistics.next(data))
+      layout: this.clusterLayoutApi.getClusterLayout().pipe(
+        tap(data => this._clusterLayout.next(data))
       ),
     }).pipe(
       tap(() => this.timestamps.set('cluster', Date.now()))

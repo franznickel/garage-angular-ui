@@ -1,10 +1,8 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
 import { NodeService } from '../../../../services/node.service';
-import { ClusterService } from '../../../../services/cluster.service';
 import {forkJoin, map} from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import { AsyncPipe, DatePipe } from '@angular/common';
-import { BucketCardComponent } from '../../../../components/bucket-card-component/bucket-card-component';
+import {AsyncPipe, DecimalPipe} from '@angular/common';
 import { InfoCardComponent } from '../../../../components/info-card-component/info-card-component';
 import { RefreshButtonComponent } from '../../../../components/refresh-button-component/refresh-button-component';
 
@@ -12,10 +10,9 @@ import { RefreshButtonComponent } from '../../../../components/refresh-button-co
   selector: 'app-node-detail-page',
   imports: [
     AsyncPipe,
-    BucketCardComponent,
-    DatePipe,
     InfoCardComponent,
-    RefreshButtonComponent
+    RefreshButtonComponent,
+    DecimalPipe
   ],
   templateUrl: './node-detail-page.html',
   styleUrl: './node-detail-page.css',

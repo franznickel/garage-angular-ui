@@ -1,11 +1,13 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ClusterService } from '../../../services/cluster.service';
-import {RefreshButtonComponent} from '../../../components/refresh-button-component/refresh-button-component';
+import { RefreshButtonComponent } from '../../../components/refresh-button-component/refresh-button-component';
+import {RouterLink} from '@angular/router';
+import {NodeCardComponent} from '../../../components/node-card-component/node-card-component';
 
 @Component({
   selector: 'app-overview-page',
-  imports: [CommonModule, RefreshButtonComponent],
+  imports: [CommonModule, RefreshButtonComponent, RouterLink, NodeCardComponent],
   templateUrl: './overview-page.html',
   styleUrl: './overview-page.css',
 })
@@ -14,7 +16,7 @@ export class OverviewPage implements OnInit {
 
   status$ = this.clusterService.status$;
   health$ = this.clusterService.health$;
-  statistics$ = this.clusterService.statistics$;
+  layout$ = this.clusterService.layout$;
   isLoading = false;
 
   ngOnInit(): void {

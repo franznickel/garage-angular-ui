@@ -4,7 +4,7 @@ import { GarageDataService } from './garage-data.service';
 import { ClusterApiService, ClusterLayoutApiService, ConnectClusterNodesRequest, ApplyClusterLayoutRequest,
   UpdateClusterLayoutRequest, ApplyClusterLayoutResponse, UpdateClusterLayoutResponse,
   ConnectClusterNodesResponse, GetClusterLayoutResponse, GetClusterStatusResponse,
-  GetClusterHealthResponse, GetClusterStatisticsResponse } from '../generated/';
+  GetClusterHealthResponse } from '../generated/';
 
 @Injectable({ providedIn: 'root' })
 export class ClusterService {
@@ -14,13 +14,12 @@ export class ClusterService {
 
   readonly status$ = this.data.clusterStatus$;
   readonly health$ = this.data.clusterHealth$;
-  readonly statistics$ = this.data.clusterStatistics$;
   readonly layout$ = this.data.clusterLayout$;
 
   refresh(): Observable<{
     status: GetClusterStatusResponse;
     health: GetClusterHealthResponse;
-    statistics: GetClusterStatisticsResponse;
+    layout: GetClusterLayoutResponse;
   }> {
     return this.data.refreshCluster();
   }

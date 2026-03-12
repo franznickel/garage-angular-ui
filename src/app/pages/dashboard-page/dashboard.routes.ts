@@ -8,6 +8,7 @@ import { KeyDetailPage } from '../dashboard/keys-page/key-detail-page/key-detail
 import { AdminTokensPage } from '../dashboard/admin-tokens-page/admin-tokens-page';
 import { NodesPage } from '../dashboard/nodes-page/nodes-page';
 import { NodeDetailPage } from '../dashboard/nodes-page/node-detail-page/node-detail-page';
+import { ClusterLayoutPage } from '../dashboard/cluster-layout-page/cluster-layout-page';
 
 export const dashboardRoutes: Routes = [
   {
@@ -17,40 +18,53 @@ export const dashboardRoutes: Routes = [
       {
         path: '',
         redirectTo: 'overview',
-        pathMatch: 'full'
+        pathMatch: 'full',
       },
       {
         path: 'overview',
-        component: OverviewPage
+        component: OverviewPage,
+        title: 'Overview',
+      },
+      {
+        path: 'layout',
+        component: ClusterLayoutPage,
+        title: 'Cluster Layout',
       },
       {
         path: 'buckets',
-        component: BucketsPage
+        component: BucketsPage,
+        title: 'Buckets',
       },
       {
         path: 'buckets/:id',
-        component: BucketDetailPage
+        component: BucketDetailPage,
+        title: 'Bucket Details',
       },
       {
         path: 'keys',
-        component: KeysPage
+        component: KeysPage,
+        title: 'Keys',
       },
       {
         path: 'keys/:id',
-        component: KeyDetailPage
+        component: KeyDetailPage,
+        title: 'Key Details',
       },
       {
         path: 'token',
-        component: AdminTokensPage
+        component: AdminTokensPage,
+        title: 'Admin Tokens',
       },
       {
         path: 'nodes',
-        component: NodesPage
+        component: NodesPage,
+        title: 'Nodes',
       },
       {
         path: 'nodes/:id',
-        component: NodeDetailPage
-      }
-    ]
-  }
+        component: NodeDetailPage,
+        title: 'Node Details',
+      },
+    ],
+  },
 ];
