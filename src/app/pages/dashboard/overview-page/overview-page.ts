@@ -1,22 +1,21 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ClusterService } from '../../../services/cluster.service';
 import { RefreshButtonComponent } from '../../../components/refresh-button-component/refresh-button-component';
-import {RouterLink} from '@angular/router';
-import {NodeCardComponent} from '../../../components/node-card-component/node-card-component';
+import { NodeCardComponent } from '../../../components/node-card-component/node-card-component';
+import { GarageDataService } from '../../../services/garage-data.service';
 
 @Component({
   selector: 'app-overview-page',
-  imports: [CommonModule, RefreshButtonComponent, RouterLink, NodeCardComponent],
+  imports: [CommonModule, RefreshButtonComponent, NodeCardComponent],
   templateUrl: './overview-page.html',
   styleUrl: './overview-page.css',
 })
 export class OverviewPage implements OnInit {
-  private clusterService = inject(ClusterService);
+  private garageDataService = inject(GarageDataService);
 
-  status$ = this.clusterService.status$;
-  health$ = this.clusterService.health$;
-  layout$ = this.clusterService.layout$;
+  status$ = this.garageDataService.clusterStatus$;
+  health$ = this.garageDataService.clusterHealth$;
+  layout$ = this.garageDataService.clusterLayout$;
   isLoading = false;
 
   ngOnInit(): void {
@@ -25,7 +24,7 @@ export class OverviewPage implements OnInit {
 
   load(): void {
     this.isLoading = true;
-    this.clusterService.refresh().subscribe({
+    this.garageDataService.refreshCluster().subscribe({
       complete: () => this.isLoading = false,
       error: () => this.isLoading = false,
     });

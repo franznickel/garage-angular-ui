@@ -1,0 +1,144 @@
+services:
+  garage1:
+    image: 'dxflrs/garage:v2.1.0'
+    container_name: garage1
+    hostname: garage1
+    ports:
+      - "3900:3900"
+      - "3901:3901"
+      - "3902:3902"
+      - "3903:3903"
+    environment:
+      - GARAGE_S3_API_URL=$GARAGE_S3_API_URL
+      - GARAGE_WEB_URL=$GARAGE_WEB_URL
+      - GARAGE_ADMIN_URL=$GARAGE_ADMIN_URL
+      - 'GARAGE_RPC_SECRET=${SERVICE_HEX_32_RPCSECRET}'
+      - GARAGE_ADMIN_TOKEN=$SERVICE_PASSWORD_GARAGE
+      - GARAGE_METRICS_TOKEN=$SERVICE_PASSWORD_GARAGEMETRICS
+      - GARAGE_ALLOW_WORLD_READABLE_SECRETS=true
+      - 'RUST_LOG=${RUST_LOG:-garage=info}'
+    volumes:
+      - 'garage-meta1:/var/lib/garage/meta'
+      - 'garage-data1:/var/lib/garage/data'
+      - type: bind
+        source: ./garage1.toml
+        target: /etc/garage.toml
+    healthcheck:
+      test:
+        - CMD
+        - /garage
+        - stats
+        - '-a'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  garage2:
+    image: 'dxflrs/garage:v2.1.0'
+    container_name: garage2
+    hostname: garage2
+    ports:
+      - "3904:3904"
+      - "3905:3905"
+      - "3906:3906"
+      - "3907:3907"
+    environment:
+      - GARAGE_S3_API_URL=$GARAGE_S3_API_URL_2
+      - GARAGE_WEB_URL=$GARAGE_WEB_URL_2
+      - GARAGE_ADMIN_URL=$GARAGE_ADMIN_URL_2
+      - 'GARAGE_RPC_SECRET=${SERVICE_HEX_32_RPCSECRET}'
+      - GARAGE_ADMIN_TOKEN=$SERVICE_PASSWORD_GARAGE_2
+      - GARAGE_METRICS_TOKEN=$SERVICE_PASSWORD_GARAGEMETRICS_2
+      - GARAGE_ALLOW_WORLD_READABLE_SECRETS=true
+      - 'RUST_LOG=${RUST_LOG_2:-garage=info}'
+    volumes:
+      - 'garage-meta2:/var/lib/garage/meta'
+      - 'garage-data2:/var/lib/garage/data'
+      -
+        type: bind
+        source: ./garage2.toml
+        target: /etc/garage.toml
+    healthcheck:
+      test:
+        - CMD
+        - /garage
+        - stats
+        - '-a'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  garage3:
+    image: 'dxflrs/garage:v2.1.0'
+    container_name: garage3
+    hostname: garage3
+    ports:
+      - "3908:3908"
+      - "3909:3909"
+      - "3910:3910"
+      - "3911:3911"
+    environment:
+      - GARAGE_S3_API_URL=$GARAGE_S3_API_URL_3
+      - GARAGE_WEB_URL=$GARAGE_WEB_URL_3
+      - GARAGE_ADMIN_URL=$GARAGE_ADMIN_URL_3
+      - 'GARAGE_RPC_SECRET=${SERVICE_HEX_32_RPCSECRET}'
+      - GARAGE_ADMIN_TOKEN=$SERVICE_PASSWORD_GARAGE_3
+      - GARAGE_METRICS_TOKEN=$SERVICE_PASSWORD_GARAGEMETRICS_3
+      - GARAGE_ALLOW_WORLD_READABLE_SECRETS=true
+      - 'RUST_LOG=${RUST_LOG_3:-garage=info}'
+    volumes:
+      - 'garage-meta3:/var/lib/garage/meta'
+      - 'garage-data3:/var/lib/garage/data'
+      - type: bind
+        source: ./garage3.toml
+        target: /etc/garage.toml
+    healthcheck:
+      test:
+        - CMD
+        - /garage
+        - stats
+        - '-a'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+  garage4:
+    image: 'dxflrs/garage:v2.1.0'
+    container_name: garage4
+    hostname: garage4
+    ports:
+      - "3912:3912"
+      - "3913:3913"
+      - "3914:3914"
+      - "3915:3915"
+    environment:
+      - GARAGE_S3_API_URL=$GARAGE_S3_API_URL_4
+      - GARAGE_WEB_URL=$GARAGE_WEB_URL_4
+      - GARAGE_ADMIN_URL=$GARAGE_ADMIN_URL_4
+      - 'GARAGE_RPC_SECRET=${SERVICE_HEX_32_RPCSECRET}'
+      - GARAGE_ADMIN_TOKEN=$SERVICE_PASSWORD_GARAGE_4
+      - GARAGE_METRICS_TOKEN=$SERVICE_PASSWORD_GARAGEMETRICS_4
+      - GARAGE_ALLOW_WORLD_READABLE_SECRETS=true
+      - 'RUST_LOG=${RUST_LOG_4:-garage=info}'
+    volumes:
+      - 'garage-meta4:/var/lib/garage/meta'
+      - 'garage-data4:/var/lib/garage/data'
+      - type: bind
+        source: ./garage4.toml
+        target: /etc/garage.toml
+    healthcheck:
+      test:
+        - CMD
+        - /garage
+        - stats
+        - '-a'
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  garage-meta1: { }
+  garage-data1: { }
+  garage-meta2: { }
+  garage-data2: { }
+  garage-meta3: { }
+  garage-data3: { }
+  garage-meta4: { }
+  garage-data4: { }

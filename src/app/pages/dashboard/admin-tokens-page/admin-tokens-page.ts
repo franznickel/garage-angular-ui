@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AdminTokenService } from '../../../services/admin-token.service';
-import {TokenCardComponent} from '../../../components/token-card-component/token-card-component';
-import {RefreshButtonComponent} from '../../../components/refresh-button-component/refresh-button-component';
+import { TokenCardComponent } from '../../../components/token-card-component/token-card-component';
+import { RefreshButtonComponent } from '../../../components/refresh-button-component/refresh-button-component';
+import { GarageDataService } from '../../../services/garage-data.service';
 
 @Component({
   selector: 'app-admin-tokens-page',
@@ -11,9 +11,9 @@ import {RefreshButtonComponent} from '../../../components/refresh-button-compone
   styleUrl: './admin-tokens-page.css',
 })
 export class AdminTokensPage implements OnInit {
-  private adminTokenService = inject(AdminTokenService);
+  private garageDataService = inject(GarageDataService);
 
-  adminTokens$ = this.adminTokenService.adminTokens$;
+  adminTokens$ = this.garageDataService.adminTokens$;
   isLoading = false;
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class AdminTokensPage implements OnInit {
 
   load(): void {
     this.isLoading = true;
-    this.adminTokenService.refresh().subscribe({
+    this.garageDataService.refreshAdminTokens().subscribe({
       complete: () => this.isLoading = false,
       error: () => this.isLoading = false,
     });

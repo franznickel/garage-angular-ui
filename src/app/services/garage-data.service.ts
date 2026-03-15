@@ -45,36 +45,6 @@ export class GarageDataService {
   readonly keys$ = this._keys.asObservable();
   readonly adminTokens$ = this._adminTokens.asObservable();
 
-  // Dashboard Initial Load
-
-  loadDashboard(): Observable<{
-    status: GetClusterStatusResponse;
-    health: GetClusterHealthResponse;
-    layout: GetClusterLayoutResponse;
-    buckets: ListBucketsResponse;
-    keys: ListKeysResponse;
-  }> {
-    return forkJoin({
-      status: this.clusterApi.getClusterStatus().pipe(
-        tap(data => this._clusterStatus.next(data))
-      ),
-      health: this.clusterApi.getClusterHealth().pipe(
-        tap(data => this._clusterHealth.next(data))
-      ),
-      layout: this.clusterLayoutApi.getClusterLayout().pipe(
-        tap(data => this._clusterLayout.next(data))
-      ),
-      buckets: this.bucketApi.listBuckets().pipe(
-        tap(data => this._buckets.next(data))
-      ),
-      keys: this.accessKeyApi.listKeys().pipe(
-        tap(data => this._keys.next(data))
-      ),
-    }).pipe(
-      tap(() => this.timestamps.set('dashboard', Date.now()))
-    );
-  }
-
   // Gezielte Refreshes
 
   refreshCluster(): Observable<{
@@ -190,6 +160,10 @@ export class GarageDataService {
       this._nodeInfos.set(id, new BehaviorSubject<MultiResponseLocalGetNodeInfoResponse | null>(null));
     }
     return this._nodeInfos.get(id)!.asObservable();
+  }
+
+  getClusterStatusSnapshot() {
+    return this._clusterStatus.getValue();
   }
 
   // Cache leeren

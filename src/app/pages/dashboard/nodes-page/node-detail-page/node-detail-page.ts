@@ -1,10 +1,10 @@
 import { ChangeDetectorRef, Component, inject, OnInit } from '@angular/core';
-import { NodeService } from '../../../../services/node.service';
-import {forkJoin, map} from 'rxjs';
+import { forkJoin, map } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
-import {AsyncPipe, DecimalPipe} from '@angular/common';
+import { AsyncPipe, DecimalPipe } from '@angular/common';
 import { InfoCardComponent } from '../../../../components/info-card-component/info-card-component';
 import { RefreshButtonComponent } from '../../../../components/refresh-button-component/refresh-button-component';
+import { GarageDataService } from '../../../../services/garage-data.service';
 
 @Component({
   selector: 'app-node-detail-page',
@@ -19,13 +19,13 @@ import { RefreshButtonComponent } from '../../../../components/refresh-button-co
 })
 export class NodeDetailPage implements OnInit {
   private route = inject(ActivatedRoute);
-  private nodeService = inject(NodeService);
+  private garageDataService = inject(GarageDataService);
   private cdr = inject(ChangeDetectorRef);
 
-  node$ = this.nodeService.clusterStatus$.pipe(
+  node$ = this.garageDataService.clusterStatus$.pipe(
     map(status => status?.nodes?.find(n => n.id === this.nodeId))
   );
-  nodeInfo$ = this.nodeService.getNodeInfoById$(this.route.snapshot.params['id']);
+  nodeInfo$ = this.garageDataService.getNodeInfo$(this.route.snapshot.params['id']);
   isLoading = false;
   nodeId = this.route.snapshot.params['id'];
 
@@ -36,8 +36,8 @@ export class NodeDetailPage implements OnInit {
   load(): void {
     this.isLoading = true;
     forkJoin({
-      nodeInfo: this.nodeService.getNodeInfoById(this.route.snapshot.params['id']),
-      status: this.nodeService.refresh(),
+      nodeInfo: this.garageDataService.getNodeInfo(this.route.snapshot.params['id']),
+      status: this.garageDataService.refreshClusterStatus(),
     }).subscribe({
       complete: () => {
         this.isLoading = false

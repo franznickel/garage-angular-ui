@@ -1,5 +1,4 @@
 import { inject, Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { ApiConfiguration } from '../generated/';
 
 const SESSION_KEY_TOKEN = 'garage_token';
@@ -8,7 +7,6 @@ const SESSION_KEY_URL = 'garage_url';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   private apiConfiguration = inject(ApiConfiguration);
-  private router = inject(Router);
 
   constructor() {
     this.restoreSession();

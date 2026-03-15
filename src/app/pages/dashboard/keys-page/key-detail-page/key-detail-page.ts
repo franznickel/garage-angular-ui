@@ -1,10 +1,10 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ActivatedRoute } from '@angular/router';
-import { KeyService } from '../../../../services/key.service';
-import {InfoCardComponent} from '../../../../components/info-card-component/info-card-component';
-import {RefreshButtonComponent} from '../../../../components/refresh-button-component/refresh-button-component';
-import {BucketCardComponent} from '../../../../components/bucket-card-component/bucket-card-component';
+import { InfoCardComponent } from '../../../../components/info-card-component/info-card-component';
+import { RefreshButtonComponent } from '../../../../components/refresh-button-component/refresh-button-component';
+import { BucketCardComponent } from '../../../../components/bucket-card-component/bucket-card-component';
+import { GarageDataService } from '../../../../services/garage-data.service';
 
 @Component({
   selector: 'app-key-detail-page',
@@ -14,9 +14,9 @@ import {BucketCardComponent} from '../../../../components/bucket-card-component/
 })
 export class KeyDetailPage implements OnInit {
   private route = inject(ActivatedRoute);
-  private keyService = inject(KeyService);
+  private garageDataService = inject(GarageDataService);
 
-  key$ = this.keyService.getKeyDetail$(this.route.snapshot.params['id']);
+  key$ = this.garageDataService.getKeyDetail$(this.route.snapshot.params['id']);
   isLoading = false;
 
   ngOnInit(): void {
@@ -25,7 +25,7 @@ export class KeyDetailPage implements OnInit {
 
   load(): void {
     this.isLoading = true;
-    this.keyService.getKeyDetail(this.route.snapshot.params['id']).subscribe({
+    this.garageDataService.getKeyDetail(this.route.snapshot.params['id']).subscribe({
       complete: () => this.isLoading = false,
       error: () => this.isLoading = false,
     });

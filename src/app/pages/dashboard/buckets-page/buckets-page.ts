@@ -1,8 +1,8 @@
 import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BucketService } from '../../../services/bucket.service';
 import { RefreshButtonComponent } from '../../../components/refresh-button-component/refresh-button-component';
 import { BucketCardComponent } from '../../../components/bucket-card-component/bucket-card-component';
+import { GarageDataService } from '../../../services/garage-data.service';
 
 @Component({
   selector: 'app-buckets-page',
@@ -11,9 +11,9 @@ import { BucketCardComponent } from '../../../components/bucket-card-component/b
   styleUrl: './buckets-page.css',
 })
 export class BucketsPage implements OnInit {
-  private bucketService = inject(BucketService);
+  private garageDataService = inject(GarageDataService);
 
-  buckets$ = this.bucketService.buckets$;
+  buckets$ = this.garageDataService.buckets$;
   isLoading = false;
 
   ngOnInit(): void {
@@ -22,7 +22,7 @@ export class BucketsPage implements OnInit {
 
   load(): void {
     this.isLoading = true;
-    this.bucketService.refresh().subscribe({
+    this.garageDataService.refreshBuckets().subscribe({
       complete: () => this.isLoading = false,
       error: () => this.isLoading = false,
     });
