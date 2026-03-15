@@ -1,6 +1,6 @@
 <div>
   <div class="flex justify-between items-center mb-8">
-    <h1 class="text-2xl font-bold">Übersicht</h1>
+    <h1 class="text-2xl font-bold">Overview</h1>
     <app-refresh-button-component (buttonClicked)="refresh()" [isLoading]="isLoading"></app-refresh-button-component>
   </div>
   <div class="flex flex-col gap-6">
@@ -13,7 +13,7 @@
           </span>
           <span class="text-sm font-semibold capitalize">{{ health.status }}</span>
           <span class="text-xs text-gray-400 ml-auto">
-            {{ health.connectedNodes }} / {{ health.knownNodes }} Nodes verbunden
+            {{ health.connectedNodes }} / {{ health.knownNodes }} Nodes connected
           </span>
         </div>
         <div class="grid grid-cols-4 gap-4">
@@ -43,8 +43,8 @@
         <div class="flex flex-col items-center justify-center gap-2 py-4 rounded-2xl border-2 border-dashed border-gray-200 bg-gray-50">
           <i class="ph ph-warning-circle text-4xl text-orange-400"></i>
           <div class="text-center">
-            <p class="text-sm font-semibold text-gray-700 mb-1">Kein Cluster Layout vorhanden</p>
-            <p class="text-xs text-gray-400">Ein Layout muss erstellt werden bevor Buckets genutzt werden können. Bitte zum Cluster Layout Tab wechseln.</p>
+            <p class="text-sm font-semibold text-gray-700 mb-1">No Cluster Layout available</p>
+            <p class="text-xs text-gray-400">You need to create a cluster layout before using buckets. Please switch to the Cluster Layout tab.</p>
           </div>
         </div>
       } @else {

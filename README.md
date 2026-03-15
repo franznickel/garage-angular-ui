@@ -37,4 +37,10 @@ A single frontend application that talks directly to the Garage Admin API.\
 
 ## Screenshots
 
-A example how the UI looks right now comming soon
+![Login.png](screenshots/Login.png)
+![Overview_no_cluster_layout.png](screenshots/Overview_no_cluster_layout.png)
+![Connect_Nodes.png](screenshots/Connect_Nodes.png)
+![Create_first_layout.png](screenshots/Create_first_layout.png)
+![Layout_overview.png](screenshots/Layout_overview.png)
+![Node_details.png](screenshots/Node_details.png)
+![Overview.png](screenshots/Overview.png)
